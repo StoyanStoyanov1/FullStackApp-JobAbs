@@ -1,3 +1,6 @@
+import Path from "../../paths";
+import {Link} from "react-router-dom";
+
 export default function Header() {
 	return (
 		<header className="header">
@@ -8,11 +11,11 @@ export default function Header() {
 				<ul className="header-nav-list">
 
 					<li className="header-nav-list-item active">
-						<a href="#" className="header-nav-list-item-link active">Home Page</a>
+						<Link to={Path.Home} className="header-nav-list-item-link active">Home Page</Link>
 					</li>
 
 					<li className="header-nav-list-item">
-						<a href="#" className="header-nav-list-item-link">All ads</a>
+						<Link to={Path.AllJobs} className="header-nav-list-item-link">All ads</Link>
 					</li>
 					<li className="header-nav-list-item">
 						<a href="#" className="header-nav-list-item-link">Create Ad</a>
