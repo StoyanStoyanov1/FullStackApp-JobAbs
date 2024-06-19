@@ -4,7 +4,7 @@ const Path = {
 	Register: '/register',
 	Login: '/login',
 	Create: '/create',
-
+	Search: '/search',
 };
 
 export default Path;

@@ -9,6 +9,7 @@ import Register from "./components/register/Register";
 import Path from "./paths";
 import Login from "./components/login/Login";
 import Create from "./components/create/Create";
+import Search from "./components/search/Search";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path={Path.Register} element={<Register/>}/>
               <Route path={Path.Login} element={<Login/>}/>
               <Route path={Path.Create} element={<Create/>}/>
+              <Route path={Path.Search} element={<Search/>}/>
           </Routes>
           <Footer/>
 
