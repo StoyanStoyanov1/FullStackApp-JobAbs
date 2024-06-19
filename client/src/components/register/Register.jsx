@@ -1,9 +1,12 @@
+import {Link} from "react-router-dom";
+import Path from "../../paths";
+
 export default function Register() {
 	return (
 		<main>
 			<section id="register-page">
 				<article className="register-page-container">
-					<form action="#" method="" className="register-page-form">
+					<form method="post" className="register-page-form">
 						<h2>Register</h2>
 						<p>Join us and find the perfect job.</p>
 
@@ -24,13 +27,12 @@ export default function Register() {
 						</article>
 
 						<article className="account">
-							<p>Already have an account? <a href="#">Sign in</a></p>
+							<p>Already have an account? <Link to={Path.Login}>Sign in</Link></p>
 						</article>
 					</form>
 
 					<article className="register-page-image">
-						{/* Do not forget to change the path to the image */}
-						<img src="./static/img/job.png" alt="image" />
+						<img src={`${process.env.PUBLIC_URL}/img/job.png`} alt='job image'/>
 					</article>
 				</article>
 			</section>

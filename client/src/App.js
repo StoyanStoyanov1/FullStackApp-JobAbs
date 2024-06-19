@@ -7,6 +7,7 @@ import AllJobs from "./components/allJobs/AllJobs";
 import Register from "./components/register/Register";
 
 import Path from "./paths";
+import Login from "./components/login/Login";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
               <Route path={Path.Home} element={<Home/>}/>
               <Route path={Path.AllJobs} element={<AllJobs/>}/>
               <Route path={Path.Register} element={<Register/>}/>
+              <Route path={Path.Login} element={<Login/>}/>
           </Routes>
           <Footer/>
 

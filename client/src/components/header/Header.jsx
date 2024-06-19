@@ -31,7 +31,7 @@ export default function Header() {
 						<Link to={Path.Register} className="header-nav-list-item-link">Register</Link>
 					</li>
 					<li className="header-nav-list-item">
-						<a href="#" className="header-nav-list-item-link">Login</a>
+						<Link to={Path.Login} className="header-nav-list-item-link">Login</Link>
 					</li>
 				</ul>
 			</nav>
