@@ -18,7 +18,7 @@ export default function Header() {
 						<Link to={Path.AllJobs} className="header-nav-list-item-link">All ads</Link>
 					</li>
 					<li className="header-nav-list-item">
-						<a href="#" className="header-nav-list-item-link">Create Ad</a>
+						<Link to={Path.Create} className="header-nav-list-item-link">Create Ad</Link>
 					</li>
 					<li className="header-nav-list-item">
 						<a href="#" className="header-nav-list-item-link">Search</a>

@@ -3,6 +3,7 @@ const Path = {
 	AllJobs: '/all-jobs',
 	Register: '/register',
 	Login: '/login',
+	Create: '/create',
 
 };
 
