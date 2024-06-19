@@ -28,7 +28,7 @@ export default function Header() {
 					</li>
 
 					<li className="header-nav-list-item">
-						<a href="#" className="header-nav-list-item-link">Register</a>
+						<Link to={Path.Register} className="header-nav-list-item-link">Register</Link>
 					</li>
 					<li className="header-nav-list-item">
 						<a href="#" className="header-nav-list-item-link">Login</a>
