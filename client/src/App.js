@@ -10,23 +10,26 @@ import Path from "./paths";
 import Login from "./components/login/Login";
 import Create from "./components/create/Create";
 import Search from "./components/search/Search";
+import {AuthProvider} from "./context/authContext";
 
 function App() {
-  return (
-      <div className="box">
-        <Header/>
-          <Routes>
-              <Route path={Path.Home} element={<Home/>}/>
-              <Route path={Path.AllJobs} element={<AllJobs/>}/>
-              <Route path={Path.Register} element={<Register/>}/>
-              <Route path={Path.Login} element={<Login/>}/>
-              <Route path={Path.Create} element={<Create/>}/>
-              <Route path={Path.Search} element={<Search/>}/>
-          </Routes>
-          <Footer/>
+	return (
+		<AuthProvider>
+			<div className="box">
+				<Header/>
+				<Routes>
+					<Route path={Path.Home} element={<Home/>}/>
+					<Route path={Path.AllJobs} element={<AllJobs/>}/>
+					<Route path={Path.Register} element={<Register/>}/>
+					<Route path={Path.Login} element={<Login/>}/>
+					<Route path={Path.Create} element={<Create/>}/>
+					<Route path={Path.Search} element={<Search/>}/>
+				</Routes>
+				<Footer/>
 
-      </div>
-  );
+			</div>
+		</AuthProvider>
+	);
 }
 
 export default App;

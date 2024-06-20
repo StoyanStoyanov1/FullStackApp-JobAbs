@@ -15,13 +15,16 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
 app.post('/register', async (req, res) => {
-	const {email, password, description} = req.body;
+	const { email, password, description } = req.body;
 	try {
-		await authService.register({email, password, description});
+		const createUser = await authService.register({ email, password, description });
+		res.status(201).json({ message: 'User registered successfully', user: createUser });
 	} catch (error) {
 		console.log(error);
+		res.status(400).json({ message: error.message });
 	}
-})
+});
+
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));

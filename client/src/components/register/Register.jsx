@@ -1,39 +1,51 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Path from "../../paths";
 import useForm from "../../hooks/useForm";
-import {useContext} from "react";
-import {register} from "../../services/authService";
+import authContext from "../../context/authContext";
+import { useContext } from "react";
 
 const registerFormKeys = {
 	Email: "email",
 	Password: "password",
 	PasswordConfirm: "passwordConfirm",
 	Description: "description",
-}
+};
 
 export default function Register() {
+	const { registerSubmitHandler } = useContext(authContext);
 
-
-	const {values, onChange, onSubmit} = useForm([], {
+	const { values, onChange, onSubmit } = useForm(registerSubmitHandler, {
 		[registerFormKeys.Email]: '',
 		[registerFormKeys.Password]: '',
 		[registerFormKeys.PasswordConfirm]: '',
 		[registerFormKeys.Description]: '',
 	});
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		if (values[registerFormKeys.Password] !== values[registerFormKeys.PasswordConfirm]) {
+			alert("Passwords do not match!");
+			return;
+		}
+
+		onSubmit(e);
+	};
+
 	return (
 		<main>
 			<section id="register-page">
 				<article className="register-page-container">
-					<form onSubmit={onSubmit} className="register-page-form">
+					<form onSubmit={handleSubmit} className="register-page-form">
 						<h2>Register</h2>
 						<p>Join us and find the perfect job.</p>
 
 						<label htmlFor="email">Email:</label>
 						<input
-							type="text"
+							type="email"
 							id="email"
 							placeholder="petar@abv.bg"
-							name="email"
+							name={registerFormKeys.Email}
 							onChange={onChange}
 							value={values[registerFormKeys.Email]}
 						/>
@@ -43,7 +55,7 @@ export default function Register() {
 							type="password"
 							id="password"
 							placeholder="******"
-							name="password"
+							name={registerFormKeys.Password}
 							onChange={onChange}
 							value={values[registerFormKeys.Password]}
 						/>
@@ -53,7 +65,7 @@ export default function Register() {
 							type="password"
 							id="repeat-password"
 							placeholder="******"
-							name="repeat-password"
+							name={registerFormKeys.PasswordConfirm}
 							onChange={onChange}
 							value={values[registerFormKeys.PasswordConfirm]}
 						/>
@@ -63,13 +75,13 @@ export default function Register() {
 							type="text"
 							id="description"
 							placeholder="Experience with HTML 5, CSS 3, Node.js"
-							name="description"
+							name={registerFormKeys.Description}
 							onChange={onChange}
 							value={values[registerFormKeys.Description]}
 						/>
 
 						<article className="register-page-button">
-							<button className="btn-register">Register</button>
+							<button type="submit" className="btn-register">Register</button>
 						</article>
 
 						<article className="account">
@@ -78,7 +90,7 @@ export default function Register() {
 					</form>
 
 					<article className="register-page-image">
-						<img src={`${process.env.PUBLIC_URL}/img/job.png`} alt='job image'/>
+						<img src={`${process.env.PUBLIC_URL}/img/job.png`} alt="job image" />
 					</article>
 				</article>
 			</section>

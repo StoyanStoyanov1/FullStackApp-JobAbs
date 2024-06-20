@@ -9,5 +9,9 @@ export const register = async (email, password, description) => {
 		description,
 	});
 
-	return result;
-}
+	if (result.ok) {
+		return result.user;
+	} else {
+		throw new Error(result.message);
+	}
+};
