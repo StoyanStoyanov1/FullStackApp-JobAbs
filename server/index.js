@@ -16,7 +16,6 @@ app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
 app.post('/register', async (req, res) => {
 	const {email, password, description} = req.body;
-	console.log(email, password, description);
 	try {
 		await authService.register({email, password, description});
 	} catch (error) {
