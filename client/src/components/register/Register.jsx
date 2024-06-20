@@ -1,7 +1,15 @@
 import {Link} from "react-router-dom";
 import Path from "../../paths";
 
+const registerFormKeys = {
+	Email: "email",
+	Password: "password",
+	PasswordConfirm: "passwordConfirm",
+	Description: "description",
+}
+
 export default function Register() {
+	
 	return (
 		<main>
 			<section id="register-page">
