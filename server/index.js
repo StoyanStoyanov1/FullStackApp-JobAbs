@@ -3,19 +3,19 @@ const app = express();
 
 const path = require('path');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
+app.use(cors());
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
-app.get('/api/hello', (req, res) => {
-	const receivedData = req.body;
-	console.log('Received Data: ', receivedData);
-
-	res.json({message: 'Data received successfully', data: receivedData});
-});
-
+app.post('/register', (req, res) => {
+	const {email, password, description} = req.body;
+	console.log(req.body);
+})
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));

@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {register} from "../services/authService";
 
 export default function useForm(submitHandler, initialValues) {
 	const [values, setValues] = useState({initialValues});
@@ -12,7 +13,7 @@ export default function useForm(submitHandler, initialValues) {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		submitHandler(values);
+		register(values.email, values.password, values.description);
 	};
 
 	return {
