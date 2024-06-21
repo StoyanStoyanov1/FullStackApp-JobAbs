@@ -15,3 +15,7 @@ export const register = async (email, password, description) => {
 		throw new Error(result.message);
 	}
 };
+
+export const logout = async () => {
+	return request('GET', `${baseUrl}/logout`);
+}

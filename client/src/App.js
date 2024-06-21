@@ -10,7 +10,10 @@ import Path from "./paths";
 import Login from "./components/login/Login";
 import Create from "./components/create/Create";
 import Search from "./components/search/Search";
+import Logout from "./components/logout/Logout";
+
 import {AuthProvider} from "./context/authContext";
+
 
 function App() {
 	return (
@@ -24,6 +27,7 @@ function App() {
 					<Route path={Path.Login} element={<Login/>}/>
 					<Route path={Path.Create} element={<Create/>}/>
 					<Route path={Path.Search} element={<Search/>}/>
+					<Route path={Path.Logout} element={<Logout/>}/>
 				</Routes>
 				<Footer/>
 

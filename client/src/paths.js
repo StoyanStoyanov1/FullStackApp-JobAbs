@@ -5,6 +5,7 @@ const Path = {
 	Login: '/login',
 	Create: '/create',
 	Search: '/search',
+	Logout: '/logout',
 };
 
 export default Path;

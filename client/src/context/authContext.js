@@ -23,13 +23,19 @@ export const AuthProvider = ({children}) => {
 		}
 	};
 
+	const logoutHandler = () => {
+		setAuth({});
+		navigate(Path.Home)
+	};
 
 	const values = {
 		registerSubmitHandler,
+		logoutHandler,
 		email: auth.email,
 		_id: auth._id,
 		isAuthenticated: !!auth.email,
 	};
+
 
 	return (
 		<AuthContext.Provider value={values}>

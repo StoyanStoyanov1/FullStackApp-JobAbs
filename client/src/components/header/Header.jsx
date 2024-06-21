@@ -1,5 +1,5 @@
 import Path from "../../paths";
-import {NavLink, useParams} from "react-router-dom";
+import {Link, NavLink, useParams} from "react-router-dom";
 
 export default function Header() {
 	const setActive = ({ isActive }) => isActive ? "header-nav-list-item-link active" : "header-nav-list-item-link";
@@ -24,7 +24,7 @@ export default function Header() {
 						<NavLink to={Path.Search} className={setActive}>Search</NavLink>
 					</li>
 					<li className="header-nav-list-item">
-						<a href="#" className="header-nav-list-item-link">Logout</a>
+						<Link to={Path.Logout} className="header-nav-list-item-link">Logout</Link>
 					</li>
 					<li className="header-nav-list-item">
 						<NavLink to={Path.Register} className={setActive}>Register</NavLink>
