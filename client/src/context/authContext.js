@@ -11,7 +11,7 @@ AuthContext.displayName = 'AuthContext';
 export const AuthProvider = ({children}) => {
 	const navigate = useNavigate();
 
-	const [auth, setAuth] = usePersistedState('auth', {});
+	const [auth, setAuth] = usePersistedState('authToken', {});
 
 	const registerSubmitHandler = async (values) => {
 		try {

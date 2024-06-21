@@ -1,36 +1,40 @@
 const express = require('express');
-const app = express();
-
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const authService = require('./service/authService');
 
-app.use(cors());
+const app = express();
 
+const corsOptions = {
+	origin: 'http://localhost:3000',
+	credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
 app.post('/register', async (req, res) => {
-	const { email, password, description } = req.body;
 	try {
-		const createUser = await authService.register({ email, password, description });
-		res.status(201).json({ message: 'User registered successfully', user: createUser });
+		await authService.register(req, res);
 	} catch (error) {
 		console.log(error);
-		res.status(400).json({ message: error.message });
+		res.status(500).json({ message: `Registration failed: ${error.message}` });
 	}
 });
-
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
 });
 
-mongoose.connect('mongodb://localhost:27017/jobs');
+mongoose.connect('mongodb://localhost:27017/jobs', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
 
 mongoose.connection.on('connected', () => console.log('MongoDB Connected'));
 mongoose.connection.on('disconnected', () => console.log('MongoDB Disconnected'));

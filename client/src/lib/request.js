@@ -11,7 +11,7 @@ const buildOptions = (data) => {
 	if (token) {
 		options.headers = {
 			...options.headers,
-			Authorization: token,
+			Authorization: `Bearer ${token}`,
 		}
 	}
 
@@ -22,6 +22,7 @@ export default async function request(method, url, data) {
 	const response = await fetch(url, {
 		method,
 		...buildOptions(data),
+		credentials: 'include',
 	});
 
 	if (response.status === 204) {

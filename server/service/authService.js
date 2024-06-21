@@ -1,21 +1,40 @@
 const User = require("./models/User");
+const jwt = require("jsonwebtoken");
 
-exports.register = async (userData) => {
-	if (!userData.email || !userData.password) {
-		throw new Error('Email and password are required');
-	}
-
+exports.register = async (req, res) => {
+	const userData = req.body;
 	try {
 		const user = await User.findOne({ email: userData.email });
 
 		if (user) {
-			throw new Error('User already exists');
+			return res.status(400).json({ message: 'User already exists' });
 		}
 
 		const createUser = await User.create(userData);
 
-		return createUser;
+		const token = await generateToken(createUser);
+
+		res.cookie('authToken', token, {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production',
+			sameSite: 'strict',
+			maxAge: 2 * 60 * 60 * 1000
+		});
+
+		return res.status(201).json({ message: 'User registered successfully', token });
 	} catch (error) {
-		throw new Error(`Registration failed: ${error.message}`);
+		return res.status(500).json({ message: `Registration failed: ${error.message}` });
 	}
+};
+
+async function generateToken(user) {
+	const payload = {
+		_id: user._id,
+		username: user.username,
+		email: user.email,
+	};
+
+	const token = jwt.sign(payload, 'thatIsSecretKey', { expiresIn: '2h' });
+
+	return token;
 }

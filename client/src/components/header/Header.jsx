@@ -4,10 +4,6 @@ import {NavLink, useParams} from "react-router-dom";
 export default function Header() {
 	const setActive = ({ isActive }) => isActive ? "header-nav-list-item-link active" : "header-nav-list-item-link";
 
-	const params = useParams();
-
-	console.log(params)
-
 	return (
 		<header className="header">
 			<article className="header-logo">
